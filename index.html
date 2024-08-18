@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Basics Assessment</title>
+    <style>
+        body, h1, h2, p, input, select, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+      p{
+        color:black;
+      }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #211572;
+            background-color: #f4f4f4;
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background-color: #211572;
+            color: #fffdbb;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        section {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            margin-bottom: 1rem;
+        }
+
+        input, select, button {
+            margin: 0.5rem 0;
+        }
+
+        input, select {
+            padding: 0.5rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #24bddf;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #211572;
+        }
+
+        footer {
+            background-color: #211572;
+            color: #fffdbb;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem;
+            }
+
+            input, select, button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JavaScript Basics Assessment</h1>
+    </header>
+    <main>
+        <div class="container">
+            <section id="calculator">
+                <h2>Task 1: Simple Calculator</h2>
+                <form id="calculatorForm" onsubmit="return false;">
+                    <input type="number" id="num1" placeholder="First Number" required>
+                    <input type="number" id="num2" placeholder="Second Number" required>
+                    <select id="operator" required>
+                        <option value="+" selected>+</option>
+                        <option value="-">-</option>
+                        <option value="*">*</option>
+                        <option value="/">/</option>
+                    </select>
+                    <button type="button" onclick="calculate()">Calculate</button>
+                </form>
+                <p id="result"></p>
+            </section>
+
+            <section id="array-operations">
+                <h2>Task 2: Array Operations</h2>
+                <form id="arrayOperationsForm" onsubmit="return false;">
+                    <input type="text" id="arrayInput" placeholder="Enter numbers separated by commas" required>
+                    <button type="button" onclick="sumEvenNumbers()">Calculate Sum</button>
+                </form>
+                <p id="sumResult"></p>
+            </section>
+
+            <section id="object-manipulation">
+                <h2>Task 3: Object Manipulation</h2>
+                <p>First Name: <span id="firstName">Mellachervu</span></p>
+                <p>Last Name: <span id="lastName">Chandana</span></p>
+                <p>Age: <span id="age">30</span></p>
+                <form id="objectManipulationForm" onsubmit="return false;">
+                    <button type="button" onclick="showFullName()">Show Full Name</button>
+                    <button type="button" onclick="incrementAge()">Increment Age</button>
+                </form>
+                <p id="personResult"></p>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 ChandanaMellachervu</p>
+    </footer>
+    <script>
+        function calculate() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const operator = document.getElementById('operator').value;
+            let result;
+
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                default:
+                    result = "Invalid operator";
+            }
+
+            document.getElementById('result').innerText = `Result: ${result}`;
+        }
+
+        function sumEvenNumbers() {
+            const arrayInput = document.getElementById('arrayInput').value;
+            const arr = arrayInput.split(',').map(Number);
+            let sum = 0;
+
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] % 2 === 0) {
+                    sum += arr[i];
+                }
+            }
+
+            document.getElementById('sumResult').innerText = `Sum of even numbers: ${sum}`;
+        }
+
+        const Person = {
+            firstName: "Mellachervu",
+            lastName: "Chandana",
+            age: 30,
+            getFullName: function () {
+                return this.firstName + " " + this.lastName;
+            },
+            incrementAge: function () {
+                this.age += 1;
+                document.getElementById('age').innerText = this.age;
+            }
+        };
+
+        function showFullName() {
+            document.getElementById('personResult').innerText = `Full Name: ${Person.getFullName()}`;
+        }
+
+        function incrementAge() {
+            Person.incrementAge();
+        }
+    </script>
+</body>
+</html>
+```
